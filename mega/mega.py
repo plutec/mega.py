@@ -527,7 +527,7 @@ class Mega(object):
         temp_output_file.close()
 
         # check mac integrity
-        if (file_mac[0] ^ file_mac[1], file_mac[2] ^ file_mac[3]) != meta_mac:
+        if file_size > 0 and (file_mac[0] ^ file_mac[1], file_mac[2] ^ file_mac[3]) != meta_mac:
             raise ValueError('Mismatched mac')
 
         shutil.move(temp_output_file.name, dest_path + file_name)
